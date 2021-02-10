@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TheWebMonks/popper.git"
+    "url": "git+https://github.com/edwindj/popper.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/TheWebMonks/popper/issues"
+    "url": "https://github.com/edwindj/popper/issues"
   },
-  "homepage": "https://github.com/TheWebMonks/popper#readme",
+  "homepage": "https://github.com/edwindj/popper#readme",
   "dependencies" : {
     "puppeteer": "1.10.0",
     "express": "4.16.4"

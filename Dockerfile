@@ -1,7 +1,7 @@
 # Install chromium in Docker
 # https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-on-alpine
 #
-FROM node:8.12.0-alpine
+FROM node:alpine
 
 ARG ROOT=/popper-app
 
@@ -33,6 +33,6 @@ COPY deployment/entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 # Default command
-CMD ["bash"]
+CMD ["server"]
 
 COPY src/ ${ROOT}/src/

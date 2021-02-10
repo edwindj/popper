@@ -4,9 +4,9 @@ const puppeteer = require('puppeteer');
 const app = express();
 const API_KEY = process.env.API_KEY;
 
-
 // Setup the browser instance
 let BROWSER = null;
+
 (async () => {
   BROWSER = await puppeteer.launch({
     executablePath: '/usr/bin/chromium-browser',
@@ -14,8 +14,10 @@ let BROWSER = null;
   });
 })();
 
-function auth(req, res, next) {
+function auth(req, res, next){
   const key = req.query.api_key;
+  const connect_id = req.query.connect_id;
+  
   if (API_KEY && API_KEY === key) {
     next();
   } else {
@@ -25,14 +27,14 @@ function auth(req, res, next) {
 }
 
 app.get('/', function (req, res) {
-  res.send({'message': 'Hello World'});
+  res.send({'message': 'Hello World!!'});
 });
 
 /**
  * Usage:
  * curl 'http://localhost:3000/v1/convert?api_key=demo&url=https://google.com' -o output.pdf
  */
-app.get('/v1/convert', auth, async (req, res) => {
+app.get('/pdf', auth, async (req, res) => {
   const url = req.query.url;
   const download = req.query.download || false;
 
@@ -41,6 +43,7 @@ app.get('/v1/convert', auth, async (req, res) => {
     await page.goto(url, {waitUntil: 'networkidle2'});
     const pdf = await page.pdf({
       format: 'A4',
+      printBackground: true,
       margin: {
         top: '50px',
         right: '50px',
