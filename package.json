@@ -16,8 +16,9 @@
     "url": "https://github.com/edwindj/popper/issues"
   },
   "homepage": "https://github.com/edwindj/popper#readme",
-  "dependencies" : {
-    "puppeteer": "1.10.0",
-    "express": "4.16.4"
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "4.16.4",
+    "puppeteer": "1.10.0"
   }
 }
