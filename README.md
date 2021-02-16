@@ -1,6 +1,6 @@
 # Popper
 
-Adapted from https://github.com/webmonks/popper
+Adapted from https://github.com/thewebmonks/popper
 
 - updated base image
 - added POST method
