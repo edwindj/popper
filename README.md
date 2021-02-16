@@ -3,8 +3,8 @@
 Adapted from https://github.com/webmonks/popper
 
 - updated base image
-- tweak the engine to pass a connect.id
-
+- added POST method
+- added cookie passing
 
 
 ```bash
