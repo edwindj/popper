@@ -1,28 +1,15 @@
-# Install chromium in Docker
-# https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-on-alpine
-#
-FROM node:alpine
+FROM zenika/alpine-chrome:89-with-node
 
-ARG ROOT=/popper-app
-
-# Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
-#ENV CHROME_BIN="/usr/bin/chromium-browser"
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-
-# Installs latest Chromium (68) package.
-RUN apk update && apk upgrade && \
-    echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
-    echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
-    apk add --no-cache \
-      chromium@edge \
-      nss@edge \
-      bash
-
-# Define the source workdir
-WORKDIR ${ROOT}
+USER root
 
 # Expose port 3000
 EXPOSE 3000
+
+RUN chown -R chrome:chrome /srv \
+ && apk add --no-cache bash
+
+WORKDIR /srv
+USER chrome
 
 # Install npm libs
 COPY package.json .
@@ -35,4 +22,4 @@ ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 # Default command
 CMD ["server"]
 
-COPY src/ ${ROOT}/src/
+COPY src/ /srv/src/
